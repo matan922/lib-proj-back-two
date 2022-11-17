@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col"></div>
+        <div class="col">
+            <!-- Form that gets information for the client's search bar and checks with the server's database if exists.
+            and if it exists it shows on a different page the outcome of the search -->
+            <form class="form-inline" action="{{ url_for('client.client_name') }}" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="clientname" placeholder="Search a client">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col text-right">
+            <a class="btn btn-success" href="/client/add_client" role="button">Add a new client!</a>
+        </div>
+    </div>
+</div>
+<h1>All Clients</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Jinja loop to show all clients and their information. -->
+    {%- for client in clients %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{client.clientname}}</h5>
+                <p class="card-text">
+                    Age: {{client.age}}
+                    <br>
+                    City: {{client.city}}
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Client ID: {{client.id}}</small>
+            </div>
+            <div>
+                <a href="/client/client_del/{{client.id}}">
+                    <button class="btn btn-danger">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

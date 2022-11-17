@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1 class="h1">Client found!</h1>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <!-- Jinja to show a single client after using the search form if it found a client. -->
+    <h5 class="card-title">Client name: {{single_client.clientname}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Client ID: {{single_client.id}}</li>
+    <li class="list-group-item">Client's Age {{single_client.age}}</li>
+    <li class="list-group-item">Client's City: {{single_client.city}}</li>
+  </ul>
+  <div class="card-body">
+    <a href="/client/client_del/{{single_client.id}}">
+      <button class="btn btn-danger">Delete</button>
+    </a> 
+    <a href="/client" class="card-link">
+      <button class="btn btn-primary">Go back to all clients!</button>
+    </a>
+  </div>
+</div>
+{% endblock %}
+

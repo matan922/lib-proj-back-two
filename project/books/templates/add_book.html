@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<!-- Form that gets information from user's input and sends it to the server's database -->
+<form action="{{ url_for('books.add_books') }}" method="post">
+    <label for="bookname">Book Name: </label>
+    <input type="text" name="bookname" placeholder="Enter Book Name" maxlength="30" required>
+    <hr>
+    <label for="author">Author Name: </label>
+    <input type="text" name="author" placeholder="Enter Author Name" maxlength="15" required>
+    <hr>
+    <label for="publishdate">Publish Date: </label>
+    <input type="date" name="publishdate" placeholder="Enter Publish Date" required>
+    <hr>
+    <label for="typeofloan">Type of loan: </label>
+    <input type="number" name="typeofloan" placeholder="Author Name" min="1" max="3" required>
+    <hr>
+    <button type="submit" class="btn btn-success">Submit new book</button>
+</form>
+{% endblock %}

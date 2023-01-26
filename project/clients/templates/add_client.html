@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<!-- Form that gets information from user's input and sends it to the server's database -->
+<form action="{{ url_for('client.add_client') }}" method="POST">
+    <label for="clientname">Client Name: </label>
+    <input type="text" name="clientname" placeholder="Enter Client Name" maxlength="15" required>
+    <hr>
+    <label for="age">Age: </label>
+    <input type="number" name="age" placeholder="Enter your age" min="1" max="120" required>
+    <hr>
+    <label for="city">City: </label>
+    <input type="text" name="city" placeholder="Enter City" maxlength="15" required>
+    <hr>
+    <button type="submit" class="btn btn-success">Submit new book</button>
+</form>
+  
+{% endblock %}

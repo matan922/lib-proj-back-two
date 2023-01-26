@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <!-- Form that gets information from user's input and sends it to the server's database -->
+            <form action="{{ url_for('loans.loan') }}" method="POST">
+                <label for="customer_id">Client ID: </label>
+                <input type="number" name="customer_id" placeholder="Enter Client ID" required>
+                <hr>
+                <label for="book_id">Book ID: </label>
+                <input type="number" name="book_id" placeholder="Enter Book ID" required>
+                <hr>
+                <button type="submit" class="btn btn-success">Submit new book</button>
+            </form>
+
+        </div>
+        <!-- Table that shows all Books and all clients in the library using Jinja to make it easier
+        to write them on the form. -->
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Book name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.bookname }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Client ID</th>
+                        <th scope="col">Client name</th>
+                    </tr>
+                </thead>
+                <tbody>                        
+                    {% for client in clients %}
+                    <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.clientname }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

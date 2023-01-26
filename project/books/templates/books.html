@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Books{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1 class="h1">Book found!</h1>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <!-- Jinja to show a single client after using the search form if it found a client. -->
+    <h5 class="card-title">Book name: {{single_book.bookname}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Book ID: {{single_book.id}}</li>
+    <li class="list-group-item">Book's Author: {{single_book.author}}</li>
+    <li class="list-group-item">Book's Publishdate {{single_book.publishdate}}</li>
+    <li class="list-group-item">Type of possible loan: {{single_book.typeofloan}}</li>
+  </ul>
+  <div class="card-body">
+    <a href="/books/books_del/{{single_book.id}}">
+      <button class="btn btn-danger">Delete</button>
+    </a> 
+    <a href="/books" class="card-link">
+      <button class="btn btn-primary">Go back to all books</button>
+    </a>
+  </div>
+</div>
+{% endblock %}

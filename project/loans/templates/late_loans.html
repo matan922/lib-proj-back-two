@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<h1 class="h1">Late loans here... :(</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- jinja loop to show all late loans -->
+    {%- for loan in late_loans %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Book name: {{loan.books.bookname}}</h5>
+                <p class="card-text">
+                    Client ID: {{ loan.clients.id }} <br>
+                    Client Name: {{ loan.clients.clientname }} <br>
+                    Client supposed returndate: <br>{{ loan.returndate }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    <a href="/loans/loans_del/{{loan.id}}">
+                        <button class="btn btn-danger">Return Late Loan</button>
+                    </a>
+                </small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+  .important {
+    color: #336699;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+<h2 class="opacity-75 bg-danger mx-auto" style="width: 375px;">{{ message }}</h2>
+{% endfor %}
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col"></div>
+    <div class="col">
+      <a class="btn btn-primary" href="/loans/late_loans" role="button">Show late loans</a>
+    </div>
+    <div class="col text-right">
+      <a class="btn btn-success" href="/loans/add_loan" role="button">Add a new loan!</a>
+    </div>
+  </div>
+</div>
+<h1>All Loans</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {%- for loan in loans %}
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{loan.books.bookname}}</h5>
+        <p class="card-text">
+          Loaned by: {{loan.clients.clientname }} <br>
+          Loan date: {{loan.loandate}}
+          <br>
+          Return date: {{loan.returndate}}
+        </p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Loan ID: {{loan.id}}</small>
+      </div>
+      <div>
+        <a href="/loans/loans_del/{{loan.id}}">
+          <button class="btn btn-danger">Delete</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
